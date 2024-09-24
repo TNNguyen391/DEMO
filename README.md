@@ -1,2 +1,2 @@
 "# DEMO" 
-Watashi wa dare
+Watashi wa
