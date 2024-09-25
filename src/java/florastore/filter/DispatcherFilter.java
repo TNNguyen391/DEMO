@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  *
- * @author ADVERTISEMENT
+ * @author Mikawa
  */
 @WebFilter(filterName = "DispatcherFilter", urlPatterns = {"/*"})
 public class DispatcherFilter implements Filter {
