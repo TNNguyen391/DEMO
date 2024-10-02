@@ -19,7 +19,10 @@ public class MyAppConstants {
         public static final String SUCCESS = "viewProfile";
     }
     public class SearchFeature {
-        public static final String INVALID_PAGE = "showSearch";
+        public static final String ERROR = "errorProcess";
         public static final String SUCCESS = "showSearch";
+        public static final String SEARCH = "searchAction";
+        public static final String SEARCH_EXTEND = "searchExtend";
+        public static final String SEARCH_TYPE = "searchType";
     }
 }

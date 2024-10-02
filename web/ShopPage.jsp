@@ -177,121 +177,141 @@
                                         <div class="mb-3">
                                             <h4>Categories</h4>
                                             <ul class="list-unstyled fruite-categorie">
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Fresh Flower</a>
-                                                        <span>(!)</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Potted Plant</a>
-                                                        <span>(!)</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Dried Flower</a>
-                                                        <span>(!)</span>
-                                                    </div>
-                                                </li>
+                                                <form id="categoriesForm" action="SearchForTypeServlet" method="POST">
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <input type="hidden" id="freshFlower" name="freshFlower"/>
+                                                            <a href="#" onclick="document.getElementById('freshFlower').value = 'freshFlower';
+                                                               document.getElementById('categoriesForm').submit();"><i class="fas fa-apple-alt me-2"></i>
+                                                                Fresh Flower
+                                                            </a>
+                                                            <span>(${sessionScope.FRESHFLOWER})</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <input type="hidden" id="pottedFlower" name="pottedFlower"/>
+                                                            <a href="#" onclick="document.getElementById('pottedFlower').value = 'pottedFlower';
+                                                               document.getElementById('categoriesForm').submit();"><i class="fas fa-apple-alt me-2"></i>
+                                                                Potted Plant
+                                                            </a>
+                                                            <span>(${sessionScope.POTTEDFLOWER})</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <input type="hidden" id="dryFlower" name="dryFlower"/>
+                                                            <a href="#" onclick="document.getElementById('dryFlower').value = 'dryFlower';
+                                                               document.getElementById('categoriesForm').submit();"><i class="fas fa-apple-alt me-2"></i>
+                                                                Dried Flower
+                                                            </a>
+                                                            <span>(${sessionScope.DRYFLOWER})</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="d-flex justify-content-between fruite-name">
+                                                            <input type="hidden" id="otherFlower" name="otherFlower"/>
+                                                            <a href="#" onclick="document.getElementById('otherFlower').value = 'otherFlower';
+                                                               document.getElementById('categoriesForm').submit();"><i class="fas fa-apple-alt me-2"></i>
+                                                                Other type
+                                                            </a>
+                                                            <span>(${sessionScope.OTHERFLOWER})</span>
+                                                        </div>
+                                                    </li>
+                                                </form>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <h4 class="mb-2">Price</h4>
-                                            <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput" min="0" max="500" value="0" oninput="amount.value=rangeInput.value">
-                                            <output id="amount" name="amount" min-velue="0" max-value="500" for="rangeInput">0</output>
-                                        </div>
+                                        <h4 class="mb-2">Price</h4>
+                                        <form id="searchRange" action="FindErrorServlet" method="POST">
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                <input type="search" name="txtPriceFrom" value="${sessionScope.PriceFrom}" 
+                                                       class="form-control p-3" placeholder="From" style="width: 125px">
+                                                <input type="search" name="txtPriceTo" value="${sessionScope.PriceTo}" 
+                                                       class="form-control p-3" placeholder="To" style="width: 125px">
+                                            </div>
+                                            <c:set var="errors" value="${requestScope.PRICE_ERROR}"/>
+                                            <c:if test="${not empty errors.priceEmpty}">
+                                                <font color="red">
+                                                ${errors.priceEmpty}
+                                                </font> <br/>
+                                            </c:if>
+                                            <c:if test="${not empty errors.priceInvalid}">
+                                                <font color="red">
+                                                ${errors.priceInvalid}
+                                                </font> <br/>
+                                            </c:if>
+                                            <c:if test="${not empty errors.priceRangeError}">
+                                                <font color="red">
+                                                ${errors.priceRangeError}
+                                                </font> <br/>
+                                            </c:if>
+                                            <div class="d-flex justify-content-center my-4">
+                                                <a href="#" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100" 
+                                                   onclick="document.getElementById('searchRange').submit()">Search</a>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <h4>Color search bar</h4>
-                                            <div class="mb-2">
-                                                <input type="radio" class="me-2" id="Categories-1" name="Categories-1" value="Beverages">
-                                                <label for="Categories-1"> Organic</label>
+                                        <form id="searchColor" action="fixthis" method="POST">
+                                            <div class="mb-3">
+                                                <h4>Search for color (later)</h4>
+                                                <div class="mb-2">
+                                                    <input type="radio" class="me-2" id="Categories-1" name="Categories-1" value="Beverages">
+                                                    <label for="Categories-1"> Red</label>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <input type="radio" class="me-2" id="Categories-2" name="Categories-1" value="Beverages">
+                                                    <label for="Categories-2"> Yellow</label>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Beverages">
+                                                    <label for="Categories-3"> Purple</label>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <input type="radio" class="me-2" id="Categories-4" name="Categories-1" value="Beverages">
+                                                    <label for="Categories-4"> White</label>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <input type="radio" class="me-2" id="Categories-5" name="Categories-1" value="Beverages">
+                                                    <label for="Categories-5"> Other</label>
+                                                </div>
                                             </div>
-                                            <div class="mb-2">
-                                                <input type="radio" class="me-2" id="Categories-2" name="Categories-1" value="Beverages">
-                                                <label for="Categories-2"> Fresh</label>
+                                            <div class="d-flex justify-content-center my-4">
+                                                <a href="#" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100" 
+                                                   onclick="document.getElementById('searchColor').submit()">Search</a>
                                             </div>
-                                            <div class="mb-2">
-                                                <input type="radio" class="me-2" id="Categories-3" name="Categories-1" value="Beverages">
-                                                <label for="Categories-3"> Sales</label>
-                                            </div>
-                                            <div class="mb-2">
-                                                <input type="radio" class="me-2" id="Categories-4" name="Categories-1" value="Beverages">
-                                                <label for="Categories-4"> Discount</label>
-                                            </div>
-                                            <div class="mb-2">
-                                                <input type="radio" class="me-2" id="Categories-5" name="Categories-1" value="Beverages">
-                                                <label for="Categories-5"> Expired</label>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
-                                    <%--Top sale--%>
+                                    <%--Top new--%>
                                     <div class="col-lg-12">
                                         <h4 class="mb-3">Featured products</h4>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                                <img src="img/featur-1.jpg" class="img-fluid rounded" alt="">
-                                            </div>
-                                            <div>
-                                                <h6 class="mb-2">Big Banana</h6>
-                                                <div class="d-flex mb-2">
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star"></i>
+                                        <c:set var="newIncome" value="${requestScope.NEWPRODUCT}"/>
+                                        <c:forEach var="dto" items="${newIncome}">
+                                            <div class="d-flex align-items-center justify-content-start">
+                                                <div class="rounded me-4" style="width: 100px; height: 100px;">
+                                                    <img src="${dto.getImageURL()}" class="img-fluid rounded" alt=""
+                                                         style="width: 100%; height: 100%; object-fit: cover;">
                                                 </div>
-                                                <div class="d-flex mb-2">
-                                                    <h5 class="fw-bold me-2">2.99 $</h5>
-                                                    <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                                <img src="img/featur-2.jpg" class="img-fluid rounded" alt="">
-                                            </div>
-                                            <div>
-                                                <h6 class="mb-2">Big Banana</h6>
-                                                <div class="d-flex mb-2">
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="d-flex mb-2">
-                                                    <h5 class="fw-bold me-2">2.99 $</h5>
-                                                    <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
+                                                <div>
+                                                    <h6 class="mb-2">${dto.getProductName()}</h6>
+                                                    <div class="d-flex mb-2">
+                                                        <i class="fa fa-star text-secondary"></i>
+                                                        <i class="fa fa-star text-secondary"></i>
+                                                        <i class="fa fa-star text-secondary"></i>
+                                                        <i class="fa fa-star text-secondary"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="d-flex mb-2">
+                                                        <h5 class="fw-bold me-2">${dto.getProductPrice()} vnd</h5>
+                                                        <h5 class="text-danger text-decoration-line-through">${dto.getProductPrice() + 50000} vnd</h5>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                                <img src="img/featur-3.jpg" class="img-fluid rounded" alt="">
-                                            </div>
-                                            <div>
-                                                <h6 class="mb-2">Big Banana</h6>
-                                                <div class="d-flex mb-2">
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <div class="d-flex mb-2">
-                                                    <h5 class="fw-bold me-2">2.99 $</h5>
-                                                    <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </c:forEach>
                                         <div class="d-flex justify-content-center my-4">
-                                            <a href="#" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">Vew More</a>
+                                            <a href="#" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">View More</a>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -335,13 +355,25 @@
                                     <%--img/Ame.jpg--%>
                                     <div class="col-12" >
                                         <div class="pagination d-flex justify-content-center mt-5">
-                                            <form id="backForm" action="SearchServlet" method="POST">
-                                                <input type="hidden" id="pageBack" name="pageBack"/>
-                                                <a href="#" class="rounded" style="margin: 1"
-                                                   onclick="document.getElementById('pageBack').value = '${sessionScope.CURRENTPAGE}';
-                                                           document.getElementById('backForm').submit();">&laquo;</a>
-                                            </form>
-                                            <form id="paginationForm" action="SearchServlet" method="POST">
+                                            <c:if test="${sessionScope.CURRENTPAGE == 1}"> 
+                                                <form>
+                                                    <a href="#" class="rounded" style="margin: 1; 
+                                                       background-color: gray; color: white; pointer-events: none; opacity: 0.6;">
+                                                        &laquo;
+                                                    </a>
+                                                </form>
+                                            </c:if>
+                                            <c:if test="${sessionScope.CURRENTPAGE != 1}"> 
+                                                <form id="backForm" action="PageChangerServlet" method="POST">
+                                                    <input type="hidden" id="pageBack" name="pageBack"/>
+                                                    <a href="#" class="rounded" style="margin: 1"
+                                                       onclick="document.getElementById('pageBack').value = '${sessionScope.CURRENTPAGE}';
+                                                               document.getElementById('backForm').submit();">
+                                                        &laquo;
+                                                    </a>
+                                                </form>
+                                            </c:if>
+                                            <form id="paginationForm" action="PageChangerServlet" method="POST">
                                                 <input type="hidden" id="pageNo" name="pageNo">
                                                 <c:forEach var="i" begin="1" end="${sessionScope.PAGE_SIZE}">
                                                     <c:if test="${sessionScope.CURRENTPAGE == i}">
@@ -358,12 +390,24 @@
                                                     </c:if>
                                                 </c:forEach>
                                             </form>
-                                            <form id="forwardForm" action="SearchServlet" method="POST">
-                                                <input type="hidden" id="pageForward" name="pageForward"/>
-                                                <a href="#" class="rounded" style="margin: 1"
-                                                   onclick="document.getElementById('pageForward').value = '${sessionScope.CURRENTPAGE}';
-                                                           document.getElementById('forwardForm').submit();">&raquo;</a>
-                                            </form>
+                                            <c:if test="${sessionScope.CURRENTPAGE != sessionScope.PAGE_SIZE}"> 
+                                                <form id="forwardForm" action="PageChangerServlet" method="POST">
+                                                    <input type="hidden" id="pageForward" name="pageForward"/>
+                                                    <a href="#" class="rounded" style="margin: 1"
+                                                       onclick="document.getElementById('pageForward').value = '${sessionScope.CURRENTPAGE}';
+                                                               document.getElementById('forwardForm').submit();">
+                                                        &raquo;
+                                                    </a>
+                                                </form>
+                                            </c:if>
+                                            <c:if test="${sessionScope.CURRENTPAGE == sessionScope.PAGE_SIZE}"> 
+                                                <form>
+                                                    <a href="#" class="rounded" style="margin: 1; 
+                                                       background-color: gray; color: white; pointer-events: none; opacity: 0.6;">
+                                                        &raquo;
+                                                    </a>
+                                                </form>
+                                            </c:if>  
                                         </div>
                                     </div>
                                 </div>

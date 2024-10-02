@@ -71,7 +71,7 @@
                         <div class="navbar-nav mx-auto">
                             <a href="HomePageJSP.jsp" class="nav-item nav-link active">Home</a>
 
-                            <a href="ShopPage.jsp" class="nav-item nav-link">Shop</a>
+                            <a href="searchAction" class="nav-item nav-link">Shop</a>
 
                             <a href="shop-detail.html" class="nav-item nav-link">Shop Detail</a>
                             <div class="nav-item dropdown">
