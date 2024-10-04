@@ -24,5 +24,6 @@ public class MyAppConstants {
         public static final String SEARCH = "searchAction";
         public static final String SEARCH_EXTEND = "searchExtend";
         public static final String SEARCH_TYPE = "searchType";
+        public static final String SEARCH_COLOR = "searchColor";
     }
 }

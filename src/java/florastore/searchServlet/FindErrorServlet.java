@@ -64,23 +64,12 @@ public class FindErrorServlet extends HttpServlet {
                     errors.setPriceRangeError("Please input a valid range!");
                 }
             }
-
             if (foundError) {                                               //tìm ra lỗi
                 request.removeAttribute("PRICE_ERROR");
                 request.setAttribute("PRICE_ERROR", errors);
                 url = (String) siteMap.get(MyAppConstants.SearchFeature.ERROR);
             }
-
-            session.removeAttribute("PriceFrom");
-            session.removeAttribute("PriceTo");
-            session.setAttribute("PriceFrom", paramPriceFrom);
-            session.setAttribute("PriceTo", paramPriceTo);
-
-//            session.removeAttribute("CURRENTPAGE");
-            
-            //find error here
         } finally {
-            System.out.println("FindError switch");
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }

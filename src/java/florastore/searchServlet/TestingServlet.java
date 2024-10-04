@@ -42,47 +42,12 @@ public class TestingServlet extends HttpServlet {
         Properties siteMap = (Properties) context.getAttribute("SITE_MAP");
         String url = (String) siteMap.get(MyAppConstants.SearchFeature.SEARCH_EXTEND);
 
-//        String paramPriceFrom = request.getParameter("txtPriceFrom");
-//        String paramPriceTo = request.getParameter("txtPriceTo");
-//
-//        int priceFrom = Integer.parseInt(paramPriceFrom);
-//        int priceTo = Integer.parseInt(paramPriceTo);
-//
-//        boolean foundError = false;                                             //cờ dò lỗi
         SearchCreateError errors = new SearchCreateError();
         HttpSession session = request.getSession();
 
         try {
-//            if (paramPriceFrom.trim().isEmpty() || paramPriceTo.trim().isEmpty()) {         //empty
-//                foundError = true;
-//                errors.setPriceEmpty("This cannot empty to search!");
-//            } else if (!paramPriceFrom.trim().matches("[0-9]$") || !paramPriceTo.trim().matches("[0-9]$")) {        //not number
-//                foundError = true;
-//                errors.setPriceInvalid("Only number are accepted!");
-//            } else if (priceFrom < 0 || priceTo < 0) {                                      //negative
-//                foundError = true;
-//                errors.setPriceNegative("Price cannot be negative!");
-//            } else if (priceFrom > priceTo) {                                               //From > To (Ex: 20 <= x <= 10)
-//                foundError = true;
-//                errors.setPriceRangeError("Please input a valid range!");
-//            }
-//
-//            if (foundError) {                                               //tìm ra lỗi
-//                request.setAttribute("PRICE_ERROR", errors);
-//                url = (String) siteMap.get(MyAppConstants.SearchFeature.SUCCESS);
-//            }
-//            
-//            session.removeAttribute("PRICE_FROM");
-//            session.removeAttribute("PRICE_TO");
-//            session.setAttribute("PRICE_FROM", paramPriceFrom);
-//            session.setAttribute("PRICE_TO", paramPriceTo);
-           
-            session.removeAttribute("CURRENTPAGE");
-            session.removeAttribute("Search");
-            session.setAttribute("SearchExtend", "searchExtend active");
-            //find error here
+
         } finally {
-            System.out.println("FindError switch");
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
